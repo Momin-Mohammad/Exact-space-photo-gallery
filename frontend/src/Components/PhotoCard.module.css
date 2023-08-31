@@ -1,9 +1,10 @@
 .PhotoCard_MainDiv{
     display : flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    gap: 2%;
+    gap: 3%;
     margin-bottom: 2%;
+    font-size: larger;
 }
 
 .PhotoCard_Photo{

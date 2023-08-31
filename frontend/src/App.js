@@ -5,7 +5,7 @@ import axios from "axios"
 
 function App() {
   const [data,setData] = useState([]);
-  const [page,setPage] = useState(1);
+  const [page,setPage] = useState(32);
   const [loading,setLoading] = useState(false);
   const [endMsg,setEndMsg] = useState(false);
 
