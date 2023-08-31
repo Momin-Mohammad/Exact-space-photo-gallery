@@ -6,11 +6,23 @@ import axios from "axios"
 function App() {
   const [data,setData] = useState([]);
   const [page,setPage] = useState(1);
+  const [loading,setLoading] = useState(false);
+  const [endMsg,setEndMsg] = useState(false);
 
   const fetchData = ()=>{
+    setLoading(true)
     axios.get(`https://picsum.photos/v2/list?page=${page}`)
     .then(res=>{
-      setData([...data,...res.data])}).catch(err=>console.log(err));
+      if(res.data.length){
+      setData([...data,...res.data]);
+      setLoading(false);
+    }
+      else{
+        setEndMsg(true);
+        setLoading(false)
+        window.removeEventListener("scroll",loadNewContent);
+      }
+    }).catch(err=>console.log(err));
   }
 
   useEffect(()=>{
@@ -22,9 +34,9 @@ function App() {
   },[page]);
 
   const loadNewContent=()=>{
-    const bottom = Math.floor(document.documentElement.scrollHeight - document.documentElement.scrollTop) <= document.documentElement.clientHeight;
+    const bottom = Math.floor(document.documentElement.scrollHeight - document.documentElement.scrollTop) === document.documentElement.clientHeight;
     if(bottom){
-   setPage(page=>page+1);
+   setPage(page=>page+1)
     }
   }
 
@@ -42,6 +54,8 @@ function App() {
           </div>
           )
         }
+        {loading?<h2>Loading Content...</h2>:null}
+        {endMsg?<h3>You are all caught up!</h3>:null}
        </div>
     </div>
   );
