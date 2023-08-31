@@ -1,0 +1,16 @@
+.PhotoCard_MainDiv{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+    margin-bottom: 2%;
+}
+
+.PhotoCard_Photo{
+    width: 20%;
+}
+
+.PhotoCard_LikeIcon{
+    width: 25px;
+    height : 25px
+}
